@@ -25,11 +25,38 @@ public class Assignment1 {
 
         }
 
-        public double distanceTo(Point otherValues) {
+        public double pointsDistance(Point otherValues) {
             double dx = this.x - otherValues.x;
             double dy = this.y - otherValues.y;
             return Math.sqrt(dx * dx + dy * dy);
         }
 
+    }
+
+    class Triangle {
+        private Point[] vertices = new Point[3];
+
+        public Triangle(Point p1, Point p2, Point p3) {
+            vertices[0] = p1;
+            vertices[1] = p2;
+            vertices[2] = p3;
+        }
+
+        public double calculatePerimeter() {
+            double perimeter = 0;
+            for (int i = 0; i < 3; i++) {
+                int j = (i + 1) % 3;
+                perimeter += vertices[i].pointsDistance(vertices[j]);
+            }
+            return perimeter;
+        }
+
+        public boolean isIsosceles() {
+            double triangleSide1 = vertices[0].pointsDistance(vertices[1]);
+            double triangleSide2 = vertices[1].pointsDistance(vertices[2]);
+            double triangleSide3 = vertices[2].pointsDistance(vertices[0]);
+
+            return triangleSide1 == triangleSide2 || triangleSide2 == triangleSide3 || triangleSide3 == triangleSide1;
+        }
     }
 }
