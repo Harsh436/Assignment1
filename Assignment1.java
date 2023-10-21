@@ -12,6 +12,13 @@ public class Assignment1 {
             double y = scan.nextDouble();
             pointsTriangle[i] = new Point(x, y);
         }
+        Triangle tri = new Triangle(pointsTriangle[0], pointsTriangle[1], pointsTriangle[2]);
+        double perimeter = tri.calculatePerimeter();
+        if (tri.isIsosceles()) {
+            System.out.println("Perimeter: " + perimeter + "   The tringle is isosceles");
+        } else {
+            System.out.println("Perimeter: " + perimeter + "   The tringle is not isosceles");
+        }
         scan.close();
     }
 
@@ -33,7 +40,7 @@ public class Assignment1 {
 
     }
 
-    class Triangle {
+    static class Triangle {
         private Point[] vertices = new Point[3];
 
         public Triangle(Point p1, Point p2, Point p3) {
