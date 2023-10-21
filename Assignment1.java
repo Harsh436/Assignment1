@@ -14,11 +14,24 @@ public class Assignment1 {
         }
         Triangle tri = new Triangle(pointsTriangle[0], pointsTriangle[1], pointsTriangle[2]);
         double perimeter = tri.calculatePerimeter();
+        double area = tri.area(pointsTriangle[0], pointsTriangle[1], pointsTriangle[2]);
+
         if (tri.isIsosceles()) {
             System.out.println("Perimeter: " + perimeter + "   The tringle is isosceles");
         } else {
             System.out.println("Perimeter: " + perimeter + "   The tringle is not isosceles");
         }
+
+        System.out.println("Enter first co-ordinate a1");
+        double a = scan.nextDouble();
+        System.out.println("Enter first co-ordinate b1");
+        double b = scan.nextDouble();
+        Point checkPoints = new Point(a, b);
+
+        for (int i = 0; i < 3; i++) {
+            Triangle tri2 = new Triangle(pointsTriangle[i], pointsTriangle[i + 1], checkPoints);
+        }
+
         scan.close();
     }
 
@@ -33,9 +46,9 @@ public class Assignment1 {
         }
 
         public double pointsDistance(Point otherValues) {
-            double dx = this.x - otherValues.x;
-            double dy = this.y - otherValues.y;
-            return Math.sqrt(dx * dx + dy * dy);
+            double distx = this.x - otherValues.x;
+            double disty = this.y - otherValues.y;
+            return Math.sqrt(distx * distx + disty * disty);
         }
 
     }
@@ -64,6 +77,17 @@ public class Assignment1 {
             double triangleSide3 = vertices[2].pointsDistance(vertices[0]);
 
             return triangleSide1 == triangleSide2 || triangleSide2 == triangleSide3 || triangleSide3 == triangleSide1;
+        }
+
+        public boolean containsPoint(Point checkPoint) {
+
+            boolean itContains = false;
+            return itContains;
+        }
+
+        public double area(Point A, Point B, Point C) {
+            double area = (A.x * (B.y - C.y) + B.x * (C.y - A.y) + C.x * (A.y - B.y)) / 2.0f;
+            return Math.abs(area);
         }
     }
 }
