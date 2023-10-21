@@ -89,7 +89,7 @@ public class Assignment1 {
             double pointArea3 = area(checkPoint, p1, p3);
             double mainTriangleArea = area(p1, p2, p3);
             totalPointArea = pointArea1 + pointArea2 + pointArea3;
-            if (totalPointArea <= mainTriangleArea) {
+            if (totalPointArea == mainTriangleArea) {
                 itContains = true;
             } else {
                 itContains = false;
