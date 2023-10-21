@@ -21,15 +21,17 @@ public class Assignment1 {
         } else {
             System.out.println("Perimeter: " + perimeter + "   The tringle is not isosceles");
         }
-
+        System.out.println("area : " + area);
         System.out.println("Enter first co-ordinate a1");
         double a = scan.nextDouble();
         System.out.println("Enter first co-ordinate b1");
         double b = scan.nextDouble();
         Point checkPoints = new Point(a, b);
-
-        for (int i = 0; i < 3; i++) {
-            Triangle tri2 = new Triangle(pointsTriangle[i], pointsTriangle[i + 1], checkPoints);
+        boolean isInside = tri.containsPoint(checkPoints, pointsTriangle[0], pointsTriangle[1], pointsTriangle[2]);
+        if (isInside) {
+            System.out.println("It is inside the triangle");
+        } else {
+            System.out.println("It is not inside the triangle");
         }
 
         scan.close();
@@ -79,9 +81,20 @@ public class Assignment1 {
             return triangleSide1 == triangleSide2 || triangleSide2 == triangleSide3 || triangleSide3 == triangleSide1;
         }
 
-        public boolean containsPoint(Point checkPoint) {
-
+        public boolean containsPoint(Point checkPoint, Point p1, Point p2, Point p3) {
             boolean itContains = false;
+            double totalPointArea = 0;
+            double pointArea1 = area(checkPoint, p1, p2);
+            double pointArea2 = area(checkPoint, p3, p2);
+            double pointArea3 = area(checkPoint, p1, p3);
+            double mainTriangleArea = area(p1, p2, p3);
+            totalPointArea = pointArea1 + pointArea2 + pointArea3;
+            if (totalPointArea <= mainTriangleArea) {
+                itContains = true;
+            } else {
+                itContains = false;
+            }
+
             return itContains;
         }
 
